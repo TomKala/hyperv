@@ -1,0 +1,7 @@
+Add-NetLbfoTeamNIC TEAM 1
+
+New-VMSwitch -Name PRODUCTION-VLAN1 -AllowManagementOS $false -NetAdapterName "TEAM - VLAN 1"  -EnableIov $true
+
+Add-NetLbfoTeamNIC TEAM 24
+
+New-VMSwitch -Name PRODUCTION-VLAN24 -AllowManagementOS $false -NetAdapterName "TEAM - VLAN 24"  -EnableIov $true
