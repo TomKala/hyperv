@@ -1,0 +1,15 @@
+ 
+$portFeature=Get-VMSystemSwitchExtensionPortFeature -FeatureName "Ethernet Switch Port Security Settings"
+# None = 0, Destination = 1, Source = 2
+$portFeature.SettingData.MonitorMode = 2
+Add-VMSwitchExtensionPortFeature -ExternalPort -SwitchName FLOWMON -VMSwitchExtensionFeature $portFeature
+
+
+$VMNetAdap = Get-VMNetworkAdapter -VMName "FLOWMON-PROBE"
+ Rename-VMNetworkAdapter -VMNetworkAdapter $VMNetAdap[1] -newname "Management 1"
+
+$VMNetAdap = Get-VMNetworkAdapter -VMName "FLOWMON-PROBE"
+ Rename-VMNetworkAdapter -VMNetworkAdapter $VMNetAdap[1] -newname "Monitoring 1"
+                  
+Set-VMNetworkAdapterVlan -Trunk -AllowedVlanIdList "1-4094" -VMName "FLOWMON-PROBE" -VMNetworkAdapterName "Monitoring 1" -NativeVlanId 0                  
+ 
