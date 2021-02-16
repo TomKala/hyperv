@@ -6,7 +6,7 @@ Add-VMSwitchExtensionPortFeature -ExternalPort -SwitchName FLOWMON -VMSwitchExte
 
 
 $VMNetAdap = Get-VMNetworkAdapter -VMName "FLOWMON-PROBE"
- Rename-VMNetworkAdapter -VMNetworkAdapter $VMNetAdap[1] -newname "Management 1"
+ Rename-VMNetworkAdapter -VMNetworkAdapter $VMNetAdap[0] -newname "Management 1"
 
 $VMNetAdap = Get-VMNetworkAdapter -VMName "FLOWMON-PROBE"
  Rename-VMNetworkAdapter -VMNetworkAdapter $VMNetAdap[1] -newname "Monitoring 1"
